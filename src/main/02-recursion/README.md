@@ -1,3 +1,0 @@
-# 02-recursion
-
-- Coloca implementaciones en `app/` y demos/menus en `impl/`.

@@ -1,33 +1,30 @@
-# Esqueleto (estilo numerado bajo `src/main`)
+# Esqueleto sin números (estilo Informática III)
 
 ## Estructura
 ```
 src/
   main/
-    01-introduction/
+    introduction/
       app/
       impl/
-    02-recursion/
-    03-sorting/
-    04-stack-queue-with-arrays/
-    05-single-linked-list/
-    06-avl/
-    06a-chatmode/
-    07-red-black-tree/
-    08-binary-heap/
-    09-integrative-project/
+    recursion/
+    sorting/
+    stackqueue/
+    linkedlist/
+    avl/
+    rbt/
+    heap/
+    integrativeproject/
   test/
-    01-introduction/
-    02-recursion/
-    03-sorting/
-    04-stack-queue-with-arrays/
-    05-single-linked-list/
-    06-avl/
-    06a-chatmode/
-    07-red-black-tree/
-    08-binary-heap/
-    09-integrative-project/
+    introduction/
+    recursion/
+    sorting/
+    stackqueue/
+    linkedlist/
+    avl/
+    rbt/
+    heap/
+    integrativeproject/
 ```
 
-> Nota: Este diseño prioriza organizar por **práctico/tema** para estudio y defensa. 
-> Si luego se requiere build con Maven/Gradle, se puede agregar sin cambiar esta jerarquía.
+> Convención: clases reutilizables en **app/** y mains/menus en **impl/**.

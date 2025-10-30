@@ -1,3 +1,0 @@
-# 06-avl
-
-- Coloca implementaciones en `app/` y demos/menus en `impl/`.
