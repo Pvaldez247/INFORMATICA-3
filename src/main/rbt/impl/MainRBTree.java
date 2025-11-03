@@ -1,0 +1,75 @@
+package rbt.impl;
+
+import rbt.app.RedBlackTree;
+
+import java.util.Scanner;
+
+public final class MainRBTree {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        RedBlackTree<Integer> rbt = new RedBlackTree<>();
+        boolean run = true;
+        while (run) {
+            menu(rbt);
+            String op = sc.nextLine().trim().toLowerCase();
+            try {
+                switch (op) {
+                    case "a":
+                        System.out.print("valor (int): ");
+                        rbt.insert(Integer.parseInt(sc.nextLine().trim()));
+                        break;
+                    case "b":
+                        System.out.print("valores (espacios o comas): ");
+                        String line = sc.nextLine().trim().replace(",", " ");
+                        for (String tok : line.split("\\s+")) if (!tok.isEmpty()) rbt.insert(Integer.parseInt(tok));
+                        break;
+                    case "c":
+                        System.out.print("valor a eliminar: ");
+                        System.out.println("remove -> " + rbt.remove(Integer.parseInt(sc.nextLine().trim())));
+                        break;
+                    case "d":
+                        rbt.deleteMin();
+                        System.out.println("deleteMin OK");
+                        break;
+                    case "e":
+                        rbt.deleteMax();
+                        System.out.println("deleteMax OK");
+                        break;
+                    case "f":
+                        System.out.print("buscar valor: ");
+                        System.out.println("contains -> " + rbt.contains(Integer.parseInt(sc.nextLine().trim())));
+                        break;
+                    case "g":
+                        System.out.println("min=" + rbt.min() + ", max=" + rbt.max());
+                        break;
+                    case "h":
+                        System.out.println("inorder     = " + rbt.inorder());
+                        System.out.println("preorder    = " + rbt.preorder());
+                        System.out.println("postorder   = " + rbt.postorder());
+                        System.out.println("level-order = " + rbt.levelOrder());
+                        break;
+                    case "i":
+                        rbt.clear();
+                        System.out.println("cleared");
+                        break;
+                    case "x":
+                        run = false; break;
+                    default:
+                        System.out.println("opcion invalida");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+            System.out.println();
+        }
+        System.out.println("Chau!");
+    }
+
+    private static void menu(RedBlackTree<Integer> rbt) {
+        System.out.println("=== Red-Black Tree Demo (Integer) ===   size=" + rbt.inorder().size());
+        System.out.println("a)insert  b)insert many  c)remove  d)deleteMin  e)deleteMax");
+        System.out.println("f)contains  g)min/max  h)traversals  i)clear");
+        System.out.println("x)salir");
+        System.out.print("opcion: ");
+    }
+}
