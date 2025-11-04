@@ -1,4 +1,4 @@
-package integrator.app;
+package integrativeproject.app;
 
 public final class ArrayQueue<T> {
     private final Object[] data; private int head, tail, size;

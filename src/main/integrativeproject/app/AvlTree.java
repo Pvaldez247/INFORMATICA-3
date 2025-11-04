@@ -1,4 +1,4 @@
-package integrator.app;
+package integrativeproject.app;
 
 public final class AvlTree<T extends Comparable<? super T>> {
     private static final class N<T>{ T k; N<T> l,r; int h=1; N(T k){this.k=k;} }

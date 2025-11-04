@@ -1,4 +1,4 @@
-package integrator.app;
+package integrativeproject.app;
 
 public final class ArrayStack<T> {
     private final Object[] data; private int top;

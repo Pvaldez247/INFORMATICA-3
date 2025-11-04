@@ -2,7 +2,6 @@ package introduction.impl;
 
 import introduction.app.GestorTareas;
 import introduction.app.Tarea;
-
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +13,6 @@ import java.util.Scanner;
  */
 public final class MainIntro {
     private static final Path ARCHIVO = Path.of("tareas.txt");
-    // Si usas Java 8: reemplazar por Paths.get("tareas.txt");
 
     public static void main(String[] args) {
         GestorTareas gestor = new GestorTareas();
@@ -23,15 +21,15 @@ public final class MainIntro {
         try { gestor.cargar(ARCHIVO); }
         catch (Exception e) { System.out.println("Aviso: no se pudieron cargar tareas previas (" + e.getMessage() + ")"); }
 
-        Scanner sc = new Scanner(System.in);
-        boolean continuar = true;
+        try (Scanner sc = new Scanner(System.in)) {
+            boolean continuar = true;
 
-        while (continuar) {
-            mostrarMenu();
-            String opcion = sc.nextLine().trim();
+            while (continuar) {
+                mostrarMenu();
+                String opcion = sc.nextLine().trim();
 
-            switch (opcion) {
-                case "1": // Agregar
+                switch (opcion) {
+                case "1" -> {
                     System.out.print("Descripcion de la tarea: ");
                     String desc = sc.nextLine().trim();
                     if (desc.isEmpty()) {
@@ -44,15 +42,11 @@ public final class MainIntro {
                             System.out.println("Error: " + ex.getMessage());
                         }
                     }
-                    break;
-
-                case "2": // Listar
+                }
+                case "2" -> listar(gestor.listar());
+                case "3" -> {
                     listar(gestor.listar());
-                    break;
-
-                case "3": // Completar
-                    listar(gestor.listar());
-                    if (gestor.listar().isEmpty()) break;
+                    if (gestor.listar().isEmpty()) return;
                     System.out.print("Indice de la tarea a completar (1..n): ");
                     Integer idx = leerEntero(sc);
                     if (idx == null) {
@@ -62,44 +56,36 @@ public final class MainIntro {
                     } else {
                         System.out.println("Indice fuera de rango.");
                     }
-                    break;
-
-                case "4": // Eliminar completadas
+                }
+                case "4" -> {
                     int eliminadas = gestor.eliminarCompletadas();
                     System.out.println("Se eliminaron " + eliminadas + " tareas completadas.");
-                    break;
-
-                case "5": // Guardar
+                }
+                case "5" -> {
                     try {
                         gestor.guardar(ARCHIVO);
                         System.out.println("Tareas guardadas en " + ARCHIVO.toAbsolutePath());
                     } catch (Exception e) {
                         System.out.println("Error al guardar: " + e.getMessage());
                     }
-                    break;
-
-                case "6": // Cargar
+                }
+                case "6" -> {
                     try {
                         gestor.cargar(ARCHIVO);
                         System.out.println("Tareas cargadas desde " + ARCHIVO.toAbsolutePath());
                     } catch (Exception e) {
                         System.out.println("Error al cargar: " + e.getMessage());
                     }
-                    break;
-
-                case "0": // Salir
-                    continuar = false;
-                    break;
-
-                default:
-                    System.out.println("Opcion no valida.");
+                }
+                case "0" -> continuar = false;
+                default -> System.out.println("Opcion no valida.");
             }
             System.out.println();
-        }
+            }
 
-        // Guardado final opcional
-        try { gestor.guardar(ARCHIVO); } catch (Exception ignored) {}
-        System.out.println("Hasta luego.");
+            try { gestor.guardar(ARCHIVO); } catch (Exception ignored) {}
+            System.out.println("Hasta luego.");
+        }
     }
 
     private static void mostrarMenu() {
@@ -127,7 +113,7 @@ public final class MainIntro {
 
     private static Integer leerEntero(Scanner sc) {
         String s = sc.nextLine().trim();
-        try { return Integer.parseInt(s); }
+        try { return Integer.valueOf(s); }
         catch (NumberFormatException e) { return null; }
     }
 }

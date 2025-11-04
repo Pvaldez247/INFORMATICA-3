@@ -1,4 +1,4 @@
-package integrator.app;
+package integrativeproject.app;
 
 import java.util.ArrayList;
 import java.util.Comparator;

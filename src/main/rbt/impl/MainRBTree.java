@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public final class MainRBTree {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        RedBlackTree<Integer> rbt = new RedBlackTree<>();
+        try (Scanner sc = new Scanner(System.in)) {
+            RedBlackTree<Integer> rbt = new RedBlackTree<>();
         boolean run = true;
         while (run) {
             menu(rbt);
@@ -16,16 +16,16 @@ public final class MainRBTree {
                 switch (op) {
                     case "a":
                         System.out.print("valor (int): ");
-                        rbt.insert(Integer.parseInt(sc.nextLine().trim()));
+                        rbt.insert(Integer.valueOf(sc.nextLine().trim()));
                         break;
                     case "b":
                         System.out.print("valores (espacios o comas): ");
                         String line = sc.nextLine().trim().replace(",", " ");
-                        for (String tok : line.split("\\s+")) if (!tok.isEmpty()) rbt.insert(Integer.parseInt(tok));
+                        for (String tok : line.split("\\s+")) if (!tok.isEmpty()) rbt.insert(Integer.valueOf(tok));
                         break;
                     case "c":
                         System.out.print("valor a eliminar: ");
-                        System.out.println("remove -> " + rbt.remove(Integer.parseInt(sc.nextLine().trim())));
+                        System.out.println("remove -> " + rbt.remove(Integer.valueOf(sc.nextLine().trim())));
                         break;
                     case "d":
                         rbt.deleteMin();
@@ -37,7 +37,7 @@ public final class MainRBTree {
                         break;
                     case "f":
                         System.out.print("buscar valor: ");
-                        System.out.println("contains -> " + rbt.contains(Integer.parseInt(sc.nextLine().trim())));
+                        System.out.println("contains -> " + rbt.contains(Integer.valueOf(sc.nextLine().trim())));
                         break;
                     case "g":
                         System.out.println("min=" + rbt.min() + ", max=" + rbt.max());
@@ -57,12 +57,13 @@ public final class MainRBTree {
                     default:
                         System.out.println("opcion invalida");
                 }
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
             }
             System.out.println();
+            }
+            System.out.println("Chau!");
         }
-        System.out.println("Chau!");
     }
 
     private static void menu(RedBlackTree<Integer> rbt) {

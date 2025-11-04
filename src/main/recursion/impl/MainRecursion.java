@@ -7,64 +7,64 @@ import java.util.Scanner;
 
 public final class MainRecursion {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        boolean run = true;
+        try (Scanner sc = new Scanner(System.in)) {
+            boolean run = true;
         while (run) {
             menu();
             String op = sc.nextLine().trim();
             try {
                 switch (op) {
-                    case "1":
+                    case "1" -> {
                         System.out.print("n (>=0): ");
                         int n = readInt(sc);
                         System.out.println("factorial(" + n + ") = " + RecursionUtils.factorial(n));
-                        break;
-                    case "2":
+                    }
+                    case "2" -> {
                         System.out.print("n (>=0): ");
                         int f = readInt(sc);
                         System.out.println("fibonacci(" + f + ") = " + RecursionUtils.fibonacci(f));
-                        break;
-                    case "3":
+                    }
+                    case "3" -> {
                         System.out.print("base: ");
                         long base = readLong(sc);
                         System.out.print("exp (>=0): ");
                         int exp = readInt(sc);
                         System.out.println(base + "^" + exp + " = " + RecursionUtils.power(base, exp));
-                        break;
-                    case "4":
+                    }
+                    case "4" -> {
                         System.out.print("texto: ");
                         String s = sc.nextLine();
                         System.out.println("reverse = " + RecursionUtils.reverse(s));
-                        break;
-                    case "5":
+                    }
+                    case "5" -> {
                         System.out.print("texto: ");
                         String p = sc.nextLine();
                         System.out.println("isPalindrome = " + RecursionUtils.isPalindrome(p));
-                        break;
-                    case "6":
+                    }
+                    case "6" -> {
                         int[] arr = readIntArray(sc, "valores del arreglo (espacios o comas): ");
                         System.out.println("sum = " + RecursionUtils.sumArray(arr));
-                        break;
-                    case "7":
+                    }
+                    case "7" -> {
                         int[] sorted = readIntArray(sc, "arreglo ORDENADO ascendente: ");
                         System.out.print("clave a buscar: ");
                         int key = readInt(sc);
                         int idx = RecursionUtils.binarySearch(sorted, key);
                         System.out.println("resultado = " + idx + (idx >= 0 ? " (valor=" + sorted[idx] + ")" : " (no encontrado)"));
-                        break;
-                    case "8":
+                    }
+                    case "8" -> {
                         System.out.print("a: ");
                         int a = readInt(sc);
                         System.out.print("b: ");
                         int b = readInt(sc);
                         System.out.println("gcd(" + a + "," + b + ") = " + RecursionUtils.gcd(a, b));
-                        break;
-                    case "9":
+                    }
+                    case "9" -> {
                         System.out.print("n (>=0): ");
                         int nb = readInt(sc);
                         System.out.println("bin = " + RecursionUtils.toBinaryString(nb));
-                        break;
-                    case "10":
+                    }
+                    case "10" -> {
                         System.out.print("n discos (0..12 recomendado): ");
                         int nh = readInt(sc);
                         List<String> moves = RecursionUtils.hanoi(nh, 'A', 'B', 'C');
@@ -72,19 +72,17 @@ public final class MainRecursion {
                         int preview = Math.min(20, moves.size());
                         for (int i = 0; i < preview; i++) System.out.println((i+1) + ". " + moves.get(i));
                         if (moves.size() > preview) System.out.println("... (" + (moves.size() - preview) + " mas)");
-                        break;
-                    case "0":
-                        run = false;
-                        break;
-                    default:
-                        System.out.println("opcion invalida");
+                    }
+                    case "0" -> run = false;
+                    default -> System.out.println("opcion invalida");
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
             System.out.println();
+            }
+            System.out.println("Chau!");
         }
-        System.out.println("Chau!");
     }
 
     private static void menu() {

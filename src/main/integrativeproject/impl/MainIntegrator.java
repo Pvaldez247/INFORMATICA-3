@@ -1,6 +1,6 @@
-package integrator.impl;
+package integrativeproject.impl;
 
-import integrator.app.*;
+import integrativeproject.app.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,58 +12,50 @@ public final class MainIntegrator {
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        TaskManager tm = new TaskManager();
-        boolean run = true;
-        while (run) {
-            menu();
-            String op = sc.nextLine().trim().toLowerCase();
-            try {
-                switch (op) {
-                    case "1":
+        try (Scanner sc = new Scanner(System.in)) {
+            TaskManager tm = new TaskManager();
+            boolean run = true;
+            while (run) {
+                menu();
+                String op = sc.nextLine().trim().toLowerCase();
+                try {
+                    switch (op) {
+                    case "1" -> {
                         Task t = tm.create(
                                 ask(sc, "description"),
                                 askDate(sc, "due date (yyyy-MM-dd or empty)", true),
                                 askPriority(sc));
                         System.out.println("created -> " + t);
-                        break;
-                    case "2":
+                    }
+                    case "2" -> {
                         System.out.print("id: ");
                         int rid = Integer.parseInt(sc.nextLine().trim());
                         System.out.println("remove -> " + tm.remove(rid));
-                        break;
-                    case "3":
+                    }
+                    case "3" -> {
                         System.out.print("id: ");
                         int cid = Integer.parseInt(sc.nextLine().trim());
                         System.out.println("complete -> " + tm.complete(cid));
-                        break;
-                    case "4":
+                    }
+                    case "4" -> {
                         System.out.print("id: ");
                         int sid = Integer.parseInt(sc.nextLine().trim());
                         LocalDate nd = askDate(sc, "new due date (yyyy-MM-dd or empty)", true);
                         System.out.println("reschedule -> " + tm.reschedule(sid, nd));
-                        break;
-                    case "5":
-                        print(tm.listAll());
-                        break;
-                    case "6":
-                        print(tm.listByPriority());
-                        break;
-                    case "7":
-                        System.out.println(tm.undo());
-                        break;
-                    case "8":
-                        System.out.println(tm.redo());
-                        break;
-                    case "x": run = false; break;
-                    default: System.out.println("invalid option");
+                    }
+                    case "5" -> print(tm.listAll());
+                    case "6" -> print(tm.listByPriority());
+                    case "7" -> System.out.println(tm.undo());
+                    case "8" -> System.out.println(tm.redo());
+                    case "x" -> run = false;
+                    default -> System.out.println("invalid option");
+                }                } catch (IllegalArgumentException e) {
+                    System.out.println("Error: " + e.getMessage());
                 }
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
+                System.out.println();
             }
-            System.out.println();
+            System.out.println("Chau!");
         }
-        System.out.println("Chau!");
     }
 
     private static void menu() {
