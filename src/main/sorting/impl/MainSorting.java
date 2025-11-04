@@ -11,27 +11,28 @@ import java.util.Scanner;
 
 public final class MainSorting {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
+        try (Scanner sc = new Scanner(System.in)) {
+            boolean run = true;
+            while (run) {
             menu();
             String op = sc.nextLine().trim();
             try {
                 switch (op) {
-                    case "1": runInsertion(sc); break;
-                    case "2": runSelection(sc); break;
-                    case "3": runMerge(sc); break;
-                    case "4": runQuick(sc); break;
-                    case "5": runCounting(sc); break;
-                    case "0": run = false; break;
-                    default: System.out.println("opcion invalida");
+                    case "1" -> runInsertion(sc);
+                    case "2" -> runSelection(sc);
+                    case "3" -> runMerge(sc);
+                    case "4" -> runQuick(sc);
+                    case "5" -> runCounting(sc);
+                    case "0" -> run = false;
+                    default -> System.out.println("opcion invalida");
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
             System.out.println();
+            }
+            System.out.println("Chau!");
         }
-        System.out.println("Chau!");
     }
 
     private static void menu() {

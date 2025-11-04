@@ -2,6 +2,7 @@ package introduction.impl;
 
 import introduction.app.GestorTareas;
 import introduction.app.Tarea;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public final class MainIntro {
 
         // Carga inicial si existe
         try { gestor.cargar(ARCHIVO); }
-        catch (Exception e) { System.out.println("Aviso: no se pudieron cargar tareas previas (" + e.getMessage() + ")"); }
+        catch (IOException e) { System.out.println("Aviso: no se pudieron cargar tareas previas (" + e.getMessage() + ")"); }
 
         try (Scanner sc = new Scanner(System.in)) {
             boolean continuar = true;
@@ -65,7 +66,7 @@ public final class MainIntro {
                     try {
                         gestor.guardar(ARCHIVO);
                         System.out.println("Tareas guardadas en " + ARCHIVO.toAbsolutePath());
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         System.out.println("Error al guardar: " + e.getMessage());
                     }
                 }
@@ -73,7 +74,7 @@ public final class MainIntro {
                     try {
                         gestor.cargar(ARCHIVO);
                         System.out.println("Tareas cargadas desde " + ARCHIVO.toAbsolutePath());
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         System.out.println("Error al cargar: " + e.getMessage());
                     }
                 }
@@ -83,7 +84,7 @@ public final class MainIntro {
             System.out.println();
             }
 
-            try { gestor.guardar(ARCHIVO); } catch (Exception ignored) {}
+            try { gestor.guardar(ARCHIVO); } catch (IOException ignored) {}
             System.out.println("Hasta luego.");
         }
     }

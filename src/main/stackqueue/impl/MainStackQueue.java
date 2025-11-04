@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public final class MainStackQueue {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        boolean run = true;
-        while (run) {
+        try (Scanner sc = new Scanner(System.in)) {
+            boolean run = true;
+            while (run) {
             System.out.println("=== Stack & Queue (arrays) ===");
             System.out.println("1) Demo Stack<String>");
             System.out.println("2) Demo Queue<String>");
@@ -18,17 +18,18 @@ public final class MainStackQueue {
             System.out.println();
             try {
                 switch (op) {
-                    case "1": demoStack(sc); break;
-                    case "2": demoQueue(sc); break;
-                    case "0": run = false; break;
-                    default: System.out.println("Opcion invalida.");
+                    case "1" -> demoStack(sc);
+                    case "2" -> demoQueue(sc);
+                    case "0" -> run = false;
+                    default -> System.out.println("Opcion invalida.");
                 }
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
             }
             System.out.println();
+            }
+            System.out.println("Chau!");
         }
-        System.out.println("Chau!");
     }
 
     private static void demoStack(Scanner sc) {
@@ -42,23 +43,15 @@ public final class MainStackQueue {
             System.out.print("opcion: ");
             String op = sc.nextLine().trim().toLowerCase();
             switch (op) {
-                case "a":
+                case "a" -> {
                     System.out.print("valor: ");
                     st.push(sc.nextLine());
-                    break;
-                case "b":
-                    System.out.println("pop -> " + st.pop());
-                    break;
-                case "c":
-                    System.out.println("peek -> " + st.peek());
-                    break;
-                case "d":
-                    System.out.println("empty=" + st.isEmpty() + ", full=" + st.isFull());
-                    break;
-                case "x":
-                    loop = false; break;
-                default:
-                    System.out.println("opcion invalida");
+                }
+                case "b" -> System.out.println("pop -> " + st.pop());
+                case "c" -> System.out.println("peek -> " + st.peek());
+                case "d" -> System.out.println("empty=" + st.isEmpty() + ", full=" + st.isFull());
+                case "x" -> loop = false;
+                default -> System.out.println("opcion invalida");
             }
         }
     }
@@ -74,23 +67,15 @@ public final class MainStackQueue {
             System.out.print("opcion: ");
             String op = sc.nextLine().trim().toLowerCase();
             switch (op) {
-                case "a":
+                case "a" -> {
                     System.out.print("valor: ");
                     q.enqueue(sc.nextLine());
-                    break;
-                case "b":
-                    System.out.println("dequeue -> " + q.dequeue());
-                    break;
-                case "c":
-                    System.out.println("peek -> " + q.peek());
-                    break;
-                case "d":
-                    System.out.println("empty=" + q.isEmpty() + ", full=" + q.isFull());
-                    break;
-                case "x":
-                    loop = false; break;
-                default:
-                    System.out.println("opcion invalida");
+                }
+                case "b" -> System.out.println("dequeue -> " + q.dequeue());
+                case "c" -> System.out.println("peek -> " + q.peek());
+                case "d" -> System.out.println("empty=" + q.isEmpty() + ", full=" + q.isFull());
+                case "x" -> loop = false;
+                default -> System.out.println("opcion invalida");
             }
         }
     }

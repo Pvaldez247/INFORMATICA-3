@@ -14,48 +14,44 @@ public final class MainRBTree {
             String op = sc.nextLine().trim().toLowerCase();
             try {
                 switch (op) {
-                    case "a":
+                    case "a" -> {
                         System.out.print("valor (int): ");
                         rbt.insert(Integer.valueOf(sc.nextLine().trim()));
-                        break;
-                    case "b":
+                    }
+                    case "b" -> {
                         System.out.print("valores (espacios o comas): ");
                         String line = sc.nextLine().trim().replace(",", " ");
                         for (String tok : line.split("\\s+")) if (!tok.isEmpty()) rbt.insert(Integer.valueOf(tok));
-                        break;
-                    case "c":
+                    }
+                    case "c" -> {
                         System.out.print("valor a eliminar: ");
                         System.out.println("remove -> " + rbt.remove(Integer.valueOf(sc.nextLine().trim())));
-                        break;
-                    case "d":
+                    }
+                    case "d" -> {
                         rbt.deleteMin();
                         System.out.println("deleteMin OK");
-                        break;
-                    case "e":
+                    }
+                    case "e" -> {
                         rbt.deleteMax();
                         System.out.println("deleteMax OK");
-                        break;
-                    case "f":
+                    }
+                    case "f" -> {
                         System.out.print("buscar valor: ");
                         System.out.println("contains -> " + rbt.contains(Integer.valueOf(sc.nextLine().trim())));
-                        break;
-                    case "g":
-                        System.out.println("min=" + rbt.min() + ", max=" + rbt.max());
-                        break;
-                    case "h":
+                    }
+                    case "g" -> System.out.println("min=" + rbt.min() + ", max=" + rbt.max());
+                    case "h" -> {
                         System.out.println("inorder     = " + rbt.inorder());
                         System.out.println("preorder    = " + rbt.preorder());
                         System.out.println("postorder   = " + rbt.postorder());
                         System.out.println("level-order = " + rbt.levelOrder());
-                        break;
-                    case "i":
+                    }
+                    case "i" -> {
                         rbt.clear();
                         System.out.println("cleared");
-                        break;
-                    case "x":
-                        run = false; break;
-                    default:
-                        System.out.println("opcion invalida");
+                    }
+                    case "x" -> run = false;
+                    default -> System.out.println("opcion invalida");
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println("Error: " + e.getMessage());
