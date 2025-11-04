@@ -1,8 +1,8 @@
 package stackqueue.impl;
 
+import java.util.Scanner;
 import stackqueue.app.ArrayQueue;
 import stackqueue.app.ArrayStack;
-import java.util.Scanner;
 
 public final class MainStackQueue {
     public static void main(String[] args) {

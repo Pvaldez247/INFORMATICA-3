@@ -1,13 +1,12 @@
 package sorting.impl;
 
-import sorting.app.SortOrder;
-import sorting.app.SortStats;
-import sorting.app.Sorting;
-import sorting.app.ArrayGenerators;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
+import sorting.app.ArrayGenerators;
+import sorting.app.SortOrder;
+import sorting.app.SortStats;
+import sorting.app.Sorting;
 
 public final class MainSorting {
     public static void main(String[] args) {

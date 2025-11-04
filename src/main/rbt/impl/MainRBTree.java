@@ -1,8 +1,7 @@
 package rbt.impl;
 
-import rbt.app.RedBlackTree;
-
 import java.util.Scanner;
+import rbt.app.RedBlackTree;
 
 public final class MainRBTree {
     public static void main(String[] args) {
