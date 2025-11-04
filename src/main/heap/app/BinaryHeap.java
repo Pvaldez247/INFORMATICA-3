@@ -27,8 +27,8 @@ public final class BinaryHeap<T> {
     }
 
     public static <T extends Comparable<? super T>> BinaryHeap<T> ofType(HeapType type) {
-        return new BinaryHeap<>(type == HeapType.MIN ? Comparator.naturalOrder()
-                                                     : Comparator.reverseOrder());
+        return new BinaryHeap<T>(type == HeapType.MIN ? Comparator.naturalOrder()
+                                                      : Comparator.reverseOrder());
     }
 
     // ---- core queries ----
